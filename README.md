@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3> NAME : KISHORE KAVIN S </H3>
+<H3> REGISTER NO. : 212224230132</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE : 18-11-2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,68 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```python
+# Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+```
+
+```python
+ # Finding Missing Values
+df.isnull().sum()
+```
+
+```python
+ # Check For Duplicates
+print(df.duplicated().sum())
+```
+
+```python
+# Remove Unnecessary Columns
+df=df.drop(['Surname', 'Geography','Gender'], axis=1) 
+# Normalize the dataset
+scaler=StandardScaler()                                
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+```
+
+```python
+# Split the dataset into input and output
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values  
+
+ # Splitting the data for training & Testing
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)  
+
+# X Train and Test
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)    
+
+# Y Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+### DATASET:
+<img width="1237" height="268" alt="image" src="https://github.com/user-attachments/assets/3fbe55e6-6f00-42d3-ad53-ad6cd69c122c" />
+
+### NULL VALUES:
+<img width="241" height="504" alt="image" src="https://github.com/user-attachments/assets/26cd09ee-eab1-4185-af2c-fd5a4442a983" />
+
+
+
+### NORMALIZED DATA:
+<img width="878" height="202" alt="image" src="https://github.com/user-attachments/assets/b22ae1fa-c8d7-4659-bc37-5e8597ce73ca" />
+
+
+### DATA SPLITTING and TRAIN AND TEST DATA:
+<img width="628" height="816" alt="image" src="https://github.com/user-attachments/assets/f70e3de0-0c84-4fd7-9096-627c42efd2e5" />
+
+<img width="592" height="136" alt="image" src="https://github.com/user-attachments/assets/1fd95e6b-eeca-4170-a331-3122e7d39526" />
 
 
 ## RESULT:
